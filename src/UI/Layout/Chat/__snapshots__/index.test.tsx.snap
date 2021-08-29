@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot testing should render view correctly 1`] = `
+<div>
+  <div
+    className="makeStyles-messageArea-1"
+  >
+    <div>
+      message area
+    </div>
+  </div>
+  <div
+    className="makeStyles-userArea-2"
+  >
+    <div>
+      user area
+    </div>
+  </div>
+</div>
+`;
