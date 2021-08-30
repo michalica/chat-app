@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {makeStyles} from "@material-ui/core";
 import styles from "./styles";
 import MessageBox from "../../atoms/MessageBox";
@@ -8,6 +8,7 @@ import {MessageStructure} from "../../../models/Message/Message";
 const useStyles = makeStyles(styles);
 
 const MessagesArea = (props: MessagesAreaProps) => {
+    const lastDiv = useRef<HTMLDivElement>(null);
 
     const classes = useStyles();
 
@@ -15,6 +16,17 @@ const MessagesArea = (props: MessagesAreaProps) => {
         myUserName,
         messages,
     } = props;
+
+    useEffect(() => {
+        const scrollToLasElement = (): void =>
+        {
+            if(lastDiv.current)
+            {
+                lastDiv.current.scrollIntoView();
+            }
+        }
+       scrollToLasElement();
+    }, [messages])
 
     return (<div className={classes.root}>
         {messages.map((message: MessageStructure) => {
@@ -33,6 +45,9 @@ const MessagesArea = (props: MessagesAreaProps) => {
                 />
             </div>
         })}
+        <div style={{ float:"left", clear: "both" }}
+             ref={lastDiv}>
+        </div>
     </div>);
 };
 
