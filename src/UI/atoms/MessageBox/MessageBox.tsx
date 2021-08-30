@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
 import styles from "./styles";
+import {MessageStructure} from "../../../models/Message/Message";
 
 
 const useStyles = makeStyles(styles);
@@ -10,19 +11,21 @@ const MessageBox = (props: MessageBoxProps) => {
     const classes = useStyles(props);
 
     const {
-        text,
-        timestamp,
-        userName,
+        messageDetails: {
+            message,
+            timestamp,
+            author,
+        }
     } = props;
     return (
         <span className={classes.root}>
             <div
                 className={classes.name}
             >
-                {userName}
+                {author}
             </div>
             <div className={classes.message}>
-                {text}
+                {message}
             </div>
             <div
                 className={classes.time}
@@ -38,8 +41,6 @@ const MessageBox = (props: MessageBoxProps) => {
 export default MessageBox;
 
 export interface MessageBoxProps {
-    userName: string;
-    text: string;
-    timestamp: string;
+    messageDetails: MessageStructure;
     backgroundColor?: string;
 }

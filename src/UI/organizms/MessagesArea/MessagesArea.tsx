@@ -3,6 +3,7 @@ import {makeStyles} from "@material-ui/core";
 import styles from "./styles";
 import MessageBox from "../../atoms/MessageBox";
 import CurrentUserMessageBox from "../../molecules/CurrentUserMessageBox";
+import {MessageStructure} from "../../../models/Message/Message";
 
 const useStyles = makeStyles(styles);
 
@@ -10,95 +11,25 @@ const MessagesArea = (props: MessagesAreaProps) => {
 
     const classes = useStyles();
 
-    const {myUserName} = props;
-    const messages  = [{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },{
-        userName: "John Doe",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },
-        {
-        userName: "Tomas",
-        text: "Hi Supp dasiodhnioas dniasoio  asiodnasioni asdpdnasiod   doasndioas ?",
-        timestamp: '',
-    },]
+    const {
+        myUserName,
+        messages,
+    } = props;
 
     return (<div className={classes.root}>
-        {messages.map((message) => {
-            if(message.userName === myUserName)
+        {messages.map((message: MessageStructure) => {
+            if(message.author === myUserName)
             {
                 return <div className={classes.myMessageWrapper}>
                     <CurrentUserMessageBox
-                        {...message}
+                        messageDetails={message}
                     />
                 </div>
             }
 
             return <div className={classes.messageWrapper}>
                 <MessageBox
-                    {...message}
+                    messageDetails={message}
                 />
             </div>
         })}
@@ -106,9 +37,9 @@ const MessagesArea = (props: MessagesAreaProps) => {
 };
 
 
-
 export default MessagesArea;
 
 export interface MessagesAreaProps{
     myUserName: string;
+    messages: MessageStructure[];
 }
