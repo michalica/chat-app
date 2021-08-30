@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core";
 import styles from "./styles";
 import {MessageStructure} from "../../../models/Message/Message";
-
+import { format, fromUnixTime } from 'date-fns'
 
 const useStyles = makeStyles(styles);
 
@@ -30,7 +30,7 @@ const MessageBox = (props: MessageBoxProps) => {
             <div
                 className={classes.time}
             >
-                {timestamp}
+                {format(fromUnixTime(timestamp), 'dd MMMM y hh:mm')}
             </div>
         </span>
     );
