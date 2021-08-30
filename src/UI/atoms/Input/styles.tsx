@@ -4,6 +4,7 @@ const styles = {
         height: 48,
         width: '100%',
         borderColor: '#0e71b3',
+        fontSize: 20,
         '&:focus': {
             outline: 'none',
         },
