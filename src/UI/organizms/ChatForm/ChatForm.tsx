@@ -1,5 +1,4 @@
 import React from 'react';
-import {InputHTMLAttributes} from "react";
 import {makeStyles} from "@material-ui/core";
 import styles from "./styles";
 import Input from "../../atoms/Input";
@@ -28,5 +27,5 @@ const ChatForm = () => {
 
 export default ChatForm;
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
+export interface ChatFormProps {
 }
