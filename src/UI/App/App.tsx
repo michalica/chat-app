@@ -1,12 +1,14 @@
 import React from 'react';
-import Chat from '../Layout/Chat';
+import Chat from '../layouts/Chat';
+import ChatForm from '../organizms/ChatForm';
 
 
 function App() {
   return (
     <Chat
-        userArea={"dasdas"}
-        messageArea={"dasda"}
+        userArea={<ChatForm />}
+        messageArea={<div style={{        marginLeft: 24,
+            marginRight: 24,}}>asdsadsada</div>}
     />
   );
 }

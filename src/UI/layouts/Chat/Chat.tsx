@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 import {makeStyles} from "@material-ui/core";
 import styles from "./styles";
+import Container from '../../atoms/Container';
 
 const useStyles = makeStyles(styles);
 
@@ -17,12 +18,16 @@ const Chat = (props: ChatProps) => {
             <div
                 className={classes.messageArea}
             >
-                {messageArea}
+                <Container>
+                    {messageArea}
+                </Container>
             </div>
             <div
                 className={classes.userArea}
             >
-                {userArea}
+                <Container>
+                    {userArea}
+                </Container>
             </div>
         </div>
     );
@@ -35,3 +40,5 @@ export interface ChatProps
 }
 
 export default Chat;
+
+
