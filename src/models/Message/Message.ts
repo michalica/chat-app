@@ -1,6 +1,5 @@
-export interface MessageStructure
-{
-    author: string;
-    message: string;
-    timestamp: number;
+export interface MessageStructure {
+  author: string;
+  message: string;
+  timestamp: number;
 }

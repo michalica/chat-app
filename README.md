@@ -1,6 +1,7 @@
 # Chat app
 
 Production url: https://pensive-einstein-d1b9a3.netlify.app/
+
 ## Hwo it works?
 
 Username in chat app is by default set to Tomas. You can change it by
@@ -30,9 +31,10 @@ Start testing
 
 ## Project structure
 
-Project is bootstrapped by CRA. 
+Project is bootstrapped by CRA.
 
 **Folders** :
+
 - builders - place for building tests fixtures
 - config - place for app configurations
 - exceptions - place for custom exceptions

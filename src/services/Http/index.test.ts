@@ -1,40 +1,38 @@
 import fetchMock from "fetch-mock";
-import {fetchFrom, postTo} from "./Http";
+import { fetchFrom, postTo } from "./Http";
 
-const TEST_URL = 'http://test.com';
+const TEST_URL = "http://test.com";
 
 describe("expectation tests", () => {
-    afterEach(() => {
-        fetchMock.restore();
-    })
+  afterEach(() => {
+    fetchMock.restore();
+  });
 
-    it('should fetchFrom correctly', async () => {
+  it("should fetchFrom correctly", async () => {
+    const fetchBody = {
+      test: "test",
+    };
+    fetchMock.getOnce(TEST_URL, {
+      body: fetchBody,
+    });
 
-        const fetchBody = {
-            test: 'test',
-        };
-        fetchMock.getOnce(TEST_URL, {
-            body: fetchBody,
-        });
+    const response = await fetchFrom(TEST_URL);
 
-        const response = await fetchFrom(TEST_URL);
+    expect(response).toEqual(fetchBody);
+  });
 
-        expect(response).toEqual(fetchBody);
-    })
+  it("should postTo correctly", async () => {
+    const fetchBody = {
+      test: "test",
+    };
+    fetchMock.postOnce(TEST_URL, {
+      body: fetchBody,
+    });
 
-    it('should postTo correctly', async () => {
+    const response = await postTo(TEST_URL, {});
 
-        const fetchBody = {
-            test: 'test',
-        };
-        fetchMock.postOnce(TEST_URL, {
-            body: fetchBody,
-        });
+    expect(response).toEqual(fetchBody);
+  });
 
-        const response = await postTo(TEST_URL, {});
-
-        expect(response).toEqual(fetchBody);
-    })
-
-    // TODO: ERROR CASES
-})
+  // TODO: ERROR CASES
+});

@@ -1,3 +1,3 @@
-import {MessageStructure} from "./Message";
+import { MessageStructure } from "./Message";
 
 export default MessageStructure;

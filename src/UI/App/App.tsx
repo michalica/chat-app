@@ -1,66 +1,61 @@
-import React, {useEffect, useState} from 'react';
-import Chat from '../layouts/Chat';
-import ChatForm from '../organizms/ChatForm';
+import React, { useEffect, useState } from "react";
+import Chat from "../layouts/Chat";
+import ChatForm from "../organizms/ChatForm";
 import MessagesArea from "../organizms/MessagesArea";
-import {getAllMessages, sendMessage} from "../../services/Message";
-import {MessageStructure} from "../../models/Message/Message";
+import { getAllMessages, sendMessage } from "../../services/Message";
+import { MessageStructure } from "../../models/Message/Message";
 
-const DEFAULT_NAME = 'Tomas';
-
+const DEFAULT_NAME = "Tomas";
 
 function App() {
   const [messages, setMessages] = useState<MessageStructure[]>([]);
 
   useEffect(() => {
-      if (messages.length === 0)
-      {
-          getAllMessages(
-              (messages: MessageStructure[]) => setMessages(messages)
-          )
-      }
-
-  }, [messages, setMessages])
-
-    function getQueryByName(query: string): string | undefined
-    {
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        const params = Object.fromEntries(urlSearchParams.entries());
-
-        return params[query];
+    if (messages.length === 0) {
+      getAllMessages((messages: MessageStructure[]) => setMessages(messages));
     }
+  }, [messages, setMessages]);
 
-    function getAuthorName(): string
-    {
-        const name = getQueryByName('name');
+  function getQueryByName(query: string): string | undefined {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
 
-        if(name)
-        {
-            return name;
-        }
-        return DEFAULT_NAME;
+    return params[query];
+  }
+
+  function getAuthorName(): string {
+    const name = getQueryByName("name");
+
+    if (name) {
+      return name;
     }
+    return DEFAULT_NAME;
+  }
   return (
     <Chat
-        userArea={<ChatForm
-            onClick={(value: string) => {
-                sendMessage({
-                    message: value,
-                    author: getAuthorName(),
-                    timestamp: Date.now(),
-                },
-                    (): void => {
-                        getAllMessages(
-                            (messages: MessageStructure[]) => setMessages(messages)
-                        )
-                    }
+      userArea={
+        <ChatForm
+          onClick={(value: string) => {
+            sendMessage(
+              {
+                message: value,
+                author: getAuthorName(),
+                timestamp: Date.now(),
+              },
+              (): void => {
+                getAllMessages((messages: MessageStructure[]) =>
+                  setMessages(messages)
                 );
-            }} />}
-        messageArea={<div>
-            <MessagesArea
-                myUserName={getAuthorName()}
-                messages={messages}
-            />
-        </div>}
+              }
+            );
+          }}
+        />
+      }
+      messageArea={
+        <div>
+          <MessagesArea myUserName={getAuthorName()} messages={messages} />
+        </div>
+      }
     />
   );
 }
