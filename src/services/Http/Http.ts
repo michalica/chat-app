@@ -1,5 +1,5 @@
 import {TOKEN} from "../../config/api/endpoints";
-import HttpErrorException from "../../Exeptions/HttpErrorException";
+import HttpErrorException from "../../exeptions/HttpErrorException";
 
 export async function fetchFrom<T = unknown>(url: string):  Promise<T>
 {
