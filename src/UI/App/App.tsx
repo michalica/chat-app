@@ -12,10 +12,14 @@ function App() {
   const [messages, setMessages] = useState<MessageStructure[]>([]);
 
   useEffect(() => {
-      getAllMessages(
-          (messages: MessageStructure[]) => setMessages(messages)
-      )
-  }, [])
+      if (messages.length === 0)
+      {
+          getAllMessages(
+              (messages: MessageStructure[]) => setMessages(messages)
+          )
+      }
+
+  }, [messages, setMessages])
 
     function getQueryByName(query: string): string | undefined
     {
@@ -44,7 +48,7 @@ function App() {
                     author: getAuthorName(),
                     timestamp: Date.now(),
                 },
-                    () => {
+                    (): void => {
                         getAllMessages(
                             (messages: MessageStructure[]) => setMessages(messages)
                         )

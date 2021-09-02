@@ -15,5 +15,5 @@ const CurrentUserMessageBox = (props: CurrentUserMessageBoxProps) => {
 
 export default CurrentUserMessageBox;
 
-export interface CurrentUserMessageBoxProps extends MessageBoxProps
+export interface CurrentUserMessageBoxProps extends Omit<MessageBoxProps, 'backgroundColor'>
 {}

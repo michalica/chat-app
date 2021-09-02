@@ -29,17 +29,17 @@ const MessagesArea = (props: MessagesAreaProps) => {
     }, [messages])
 
     return (<div className={classes.root}>
-        {messages.map((message: MessageStructure) => {
+        {messages.map((message: MessageStructure, index: number) => {
             if(message.author === myUserName)
             {
-                return <div className={classes.myMessageWrapper}>
+                return <div key={index} className={classes.myMessageWrapper}>
                     <CurrentUserMessageBox
                         messageDetails={message}
                     />
                 </div>
             }
 
-            return <div className={classes.messageWrapper}>
+            return <div key={index} className={classes.messageWrapper}>
                 <MessageBox
                     messageDetails={message}
                 />

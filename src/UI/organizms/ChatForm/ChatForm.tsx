@@ -26,6 +26,7 @@ const ChatForm = (props: ChatFormProps) => {
     >
         <Input
             value={value}
+            aria-label="message-input"
             onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
             onKeyUp={(e: KeyboardEvent<HTMLInputElement>) => {
                 if (e.key === "Enter") {
@@ -38,6 +39,7 @@ const ChatForm = (props: ChatFormProps) => {
             className={classes.buttonWrapper}
         >
             <Button
+                aria-label="submit-message"
                 onClick={() => {
                     submitValueAndReset();
             }}

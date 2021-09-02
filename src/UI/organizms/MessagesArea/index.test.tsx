@@ -1,17 +1,32 @@
-import MessagesArea from "./MessagesArea";
+import MessagesArea, {MessagesAreaProps} from "./MessagesArea";
 import {shallow} from "enzyme";
-import Input from "../../atoms/Input";
-import Button from "../../atoms/Button";
+import MessageBuilder from "../../../builders/MessageBuilder/MessageBuilder";
+import MessageBox from "../../atoms/MessageBox";
+import CurrentUserMessageBox from "../../molecules/CurrentUserMessageBox";
+
+
+const props = (): MessagesAreaProps => {
+
+    const messages = [
+        MessageBuilder.create().build(),
+        MessageBuilder.forAuthor('Alex').build(),
+    ];
+
+    return {
+        messages,
+        myUserName: 'Alex'
+    }
+}
 
 describe("expectation tests", () => {
-    it('should include Input',  () => {
-        const wrapper = shallow(<MessagesArea myUserName="tomas" />)
+    it('render correct number of MessageBoxes', () => {
+        const wrapper = shallow(<MessagesArea {...props()} />)
 
-        expect(wrapper.find(Input).length).toBe(1);
-    });
-    it('should include Button',  () => {
-        const wrapper = shallow(<MessagesArea myUserName="tomas" />)
+        expect(wrapper.find(MessageBox).length).toBe(1);
+    })
+    it('render correct number of CurrentUserMessageBoxes', () => {
+        const wrapper = shallow(<MessagesArea {...props()} />)
 
-        expect(wrapper.find(Button).length).toBe(1);
-    });
+        expect(wrapper.find(CurrentUserMessageBox).length).toBe(1);
+    })
 })

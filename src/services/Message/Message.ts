@@ -1,7 +1,6 @@
 import {fetchFrom, postTo} from "../Http";
 import endpoints from "../../config/api/endpoints";
 import {MessageStructure} from "../../models/Message/Message";
-import HttpErrorException from "../../Exeptions/HttpErrorException/HttpErrorException";
 
 export async function getAllMessages(messagesCallback: (messages: MessageStructure[]) => void): Promise<void>
 {
@@ -11,7 +10,8 @@ export async function getAllMessages(messagesCallback: (messages: MessageStructu
         ))
     }catch (e)
     {
-        throw new HttpErrorException('get all messages not successful')
+        // We need to handle error appropriately with
+        // an additional layer (we can send log to logging system, move website to error state etc.)
     }
 
 }
@@ -28,6 +28,7 @@ export async function sendMessage(data: MessageStructure, successCallback: () =>
 
     }
     catch (e) {
-        throw new HttpErrorException('send message not successful')
+        // We need to handle error appropriately with
+        // an additional layer (we can send log to logging system, move website to error state etc.)
     }
 }
